@@ -41,19 +41,27 @@ class GtkThemeData {
   /// Current font with size, might need parsing
   String font;
 
-  GtkThemeData({
-    required this.name,
-    this.theme_fg_color = 0xff,
-    this.theme_text_color = 0xff,
-    this.theme_bg_color = 0xff,
-    this.theme_base_color = 0xff,
-    this.theme_selected_bg_color = 0xff,
-    this.theme_selected_fg_color = 0xff,
-    this.warning_color = 0xff,
-    this.error_color = 0xff,
-    this.success_color = 0xff,
-    this.font = "",
-  });
+  int borders;
+  int button_bg;
+  int button_fg;
+  int button_hover;
+
+  GtkThemeData(
+      {required this.name,
+      this.theme_fg_color = 0xff,
+      this.theme_text_color = 0xff,
+      this.theme_bg_color = 0xff,
+      this.theme_base_color = 0xff,
+      this.theme_selected_bg_color = 0xff,
+      this.theme_selected_fg_color = 0xff,
+      this.warning_color = 0xff,
+      this.error_color = 0xff,
+      this.success_color = 0xff,
+      this.font = "",
+      this.borders = 0xff,
+      this.button_bg = 0xff,
+      this.button_fg = 0xff,
+      this.button_hover = 0xff});
 
   ThemeData get themeData => ThemeData(
         scaffoldBackgroundColor: Color(theme_base_color),
@@ -80,6 +88,10 @@ class GtkThemeData {
       error_color: data["error_color"] as int,
       success_color: data["success_color"] as int,
       font: data["font"] as String,
+      borders: data["borders"] as int,
+      button_bg: data["button_bg"] as int,
+      button_fg: data["button_fg"] as int,
+      button_hover: data["button_hover"] as int,
     );
   }
 }

@@ -116,6 +116,18 @@ static void gtk_theme_fl_plugin_handle_method_call(GtkThemeFlPlugin *self,
     gtk_style_context_lookup_color(context, "error_color", &error_color);
     gtk_style_context_lookup_color(context, "success_color", &success_color);
 
+    GdkRGBA borders;
+    gtk_style_context_lookup_color(context, "borders", &borders);
+
+    GdkRGBA button_bg;
+    gtk_style_context_lookup_color(context, "theme_button_background_normal", &button_bg);
+
+    GdkRGBA button_fg;
+    gtk_style_context_lookup_color(context, "theme_button_foreground_normal", &button_fg);
+
+    GdkRGBA button_hover;
+    gtk_style_context_lookup_color(context, "theme_button_decoration_hover", &button_hover);
+
     g_autoptr(FlValue) result = fl_value_new_map();
     fl_value_set_string(result, "name", fl_value_new_string(theme_name));
     fl_value_set_string(
@@ -146,6 +158,19 @@ static void gtk_theme_fl_plugin_handle_method_call(GtkThemeFlPlugin *self,
     fl_value_set_string(
         result, "success_color",
         fl_value_new_int(get_color_int_from_RGBA(&success_color)));
+
+    fl_value_set_string(
+        result, "borders",
+        fl_value_new_int(get_color_int_from_RGBA(&borders)));
+    fl_value_set_string(
+        result, "button_bg",
+        fl_value_new_int(get_color_int_from_RGBA(&button_bg)));
+    fl_value_set_string(
+        result, "button_fg",
+        fl_value_new_int(get_color_int_from_RGBA(&button_fg)));
+    fl_value_set_string(
+        result, "button_hover",
+        fl_value_new_int(get_color_int_from_RGBA(&button_hover)));
 
     // GENERIC COLORS END
     // WIDGET SPECIFIC STUFF STARTS
